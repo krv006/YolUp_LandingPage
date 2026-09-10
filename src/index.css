@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+/* Mavzu `.dark` klassi bilan boshqariladi (index.html dagi skript qo'yadi),
+   shuning uchun `dark:` varianti media-query emas, klassga bog'lanadi. */
+@custom-variant dark (&:is(.dark *));
+
+/* ---------------------------------------------------------------------------
+   BREND TOKENLARI — manba: docs/LANDING_BRIEF.md §6
+   Gradient ranglari mavzuga qarab O'ZGARMAYDI: logotip ikkala fonda ham bir xil
+   ko'rinishi kerak. Faqat yuza/matn tokenlari almashadi.
+--------------------------------------------------------------------------- */
+:root {
+  --bg: #ffffff;
+  --bg-subtle: #f6f8fc;
+  --surface: #ffffff;
+
+  --ink: #0e1b3c;
+  --ink-soft: #2a3a5c;
+  --fg: #55627d;
+  --faint: #8a94ac;
+  --line: #e4e9f2;
+
+  /* Shishasimon navbar foni — scroll'da paydo bo'ladi. */
+  --veil: rgba(255, 255, 255, 0.82);
+  --shadow-rgb: 14 27 60;
+}
+
+.dark {
+  --bg: #0b1020;
+  --bg-subtle: #111834;
+  --surface: #111834;
+
+  --ink: #eaf0ff;
+  --ink-soft: #c6d0ea;
+  --fg: #a7b2cc;
+  --faint: #7c88a6;
+  --line: #1e2748;
+
+  --veil: rgba(11, 16, 32, 0.82);
+  --shadow-rgb: 3 6 18;
+}
+
+@theme inline {
+  /* --- Yuza va matn (mavzuga qarab almashadi) --- */
+  --color-bg: var(--bg);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-fg: var(--fg);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-veil: var(--veil);
+
+  /* --- Brend (o'zgarmas) --- */
+  --color-violet: #6c4cf1;
+  --color-indigo: #4a66f0;
+  --color-blue: #2f7bf5;
+  --color-cyan: #22c7e8;
+  --color-mint: #22d3a5;
+
+  /* --- Ikkilamchi aksentlar: logotipdagi 4 ta ikonka --- */
+  --color-sky: #5aa9f0;
+  --color-green: #2bd68a;
+  --color-people: #5b7fe0;
+  --color-orange: #f2994a;
+
+  /* --- Tipografiya --- */
+  --font-display: "Manrope", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* Suyuq shkala: mobil → desktop (brief §6.3). */
+  --text-display: clamp(2.25rem, 1.12rem + 4.8vw, 4rem); /* 36 → 64 */
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.03em;
+  --text-h2: clamp(1.75rem, 1.28rem + 2vw, 2.75rem); /* 28 → 44 */
+  --text-h2--line-height: 1.12;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h3: clamp(1.25rem, 1.12rem + 0.55vw, 1.625rem); /* 20 → 26 */
+  --text-h3--line-height: 1.25;
+  --text-h3--letter-spacing: -0.015em;
+  --text-lead: clamp(1rem, 0.96rem + 0.18vw, 1.0625rem); /* 16 → 17 */
+  --text-lead--line-height: 1.65;
+
+  /* --- Shakl --- */
+  --radius-btn: 12px;
+  --radius-card: 20px;
+  --radius-block: 28px;
+
+  /* --- Soyalar: rangli va yumshoq --- */
+  --shadow-soft: 0 1px 2px rgb(var(--shadow-rgb) / 0.05), 0 8px 24px rgb(var(--shadow-rgb) / 0.05);
+  --shadow-lift: 0 2px 4px rgb(var(--shadow-rgb) / 0.06), 0 18px 40px rgb(var(--shadow-rgb) / 0.1);
+  --shadow-brand: 0 10px 30px rgb(108 76 241 / 0.28);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  /* Sticky navbar ostida qolib ketmasligi uchun. */
+  :where(section[id]) {
+    scroll-margin-top: 5.5rem;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: rgb(108 76 241 / 0.18);
+    color: var(--ink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Brend gradienti — CTA, aksent, ikonka fonlari uchun yagona manba. */
+  .bg-brand {
+    background-image: linear-gradient(135deg, #6c4cf1 0%, #2f7bf5 48%, #22d3a5 100%);
+  }
+
+  .text-brand {
+    background-image: linear-gradient(120deg, #6c4cf1 0%, #2f7bf5 52%, #22d3a5 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Nozik to'r naqshi — "blob" o'rniga tekstura beradi. */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  /* Kartochka chetidagi ingichka gradient hoshiya. */
+  .ring-brand-soft {
+    box-shadow: inset 0 0 0 1px rgb(108 76 241 / 0.16);
+  }
+}

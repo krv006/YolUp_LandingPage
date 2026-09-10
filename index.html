@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <title>YolUp — Onlayn ta'lim platformasi | Jonli darslar, AI tekshiruv, ota-ona nazorati</title>
+    <meta
+      name="description"
+      content="YolUp — O'zbekiston uchun onlayn ta'lim platformasi: jonli video darslar, interaktiv doska, AI uy vazifasi tekshiruvi va ota-ona nazorati."
+    />
+    <link rel="canonical" href="https://yolup.uz/" />
+
+    <meta name="theme-color" content="#6C4CF1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0B1020" media="(prefers-color-scheme: dark)" />
+    <!-- SVG belgisi 1 KB dan kichik; PNG faqat SVG'ni qo'llamaydigan
+         brauzerlar va iOS "home screen" ikonkasi uchun qoladi. -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/logo-mark.png" />
+    <link rel="apple-touch-icon" href="/logo-mark.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="uz_UZ" />
+    <meta property="og:site_name" content="YolUp" />
+    <meta property="og:url" content="https://yolup.uz/" />
+    <meta property="og:title" content="YolUp — Onlayn ta'lim platformasi" />
+    <meta
+      property="og:description"
+      content="Jonli darslar, interaktiv doska, AI uy vazifasi tekshiruvi va ota-ona nazorati — bitta platformada. O'zbek tilida."
+    />
+    <meta property="og:image" content="https://yolup.uz/og-image.png" />
+    <meta property="og:image:alt" content="YolUp — Learn today. Go further." />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="YolUp — Onlayn ta'lim platformasi" />
+    <meta
+      name="twitter:description"
+      content="Jonli darslar, interaktiv doska, AI uy vazifasi tekshiruvi va ota-ona nazorati — bitta platformada."
+    />
+    <meta name="twitter:image" content="https://yolup.uz/og-image.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      // Mavzu React yuklanmasdan OLDIN qo'yiladi — aks holda qorong'i mavzuda
+      // oq ekran bir lahza "chaqnab" ketadi.
+      (function () {
+        try {
+          var stored = localStorage.getItem("yolup-theme");
+          var dark =
+            stored === "dark" ||
+            (stored !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+          document.documentElement.classList.toggle("dark", dark);
+          document.documentElement.style.colorScheme = dark ? "dark" : "light";
+        } catch (error) {
+          /* localStorage o'chirilgan — yorug' mavzu qoladi */
+        }
+      })();
+    </script>
+
+    <!-- Structured data. FAQ savollari `src/content/site.ts` dagi FAQ_ITEMS bilan
+         bir xil bo'lishi kerak — o'zgartirilsa ikkalasi ham yangilanadi. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "YolUp",
+        "url": "https://yolup.uz/",
+        "logo": "https://yolup.uz/logo-mark.png",
+        "slogan": "Learn today. Go further.",
+        "description": "O'zbekiston uchun onlayn ta'lim platformasi: jonli video darslar, interaktiv doska, AI uy vazifasi tekshiruvi va ota-ona nazorati.",
+        "areaServed": "UZ",
+        "inLanguage": ["uz", "ru", "en"]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Dars yozuvini yuklab olsa bo'ladimi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yo'q. Dars yozuvi faqat platforma ichida ochiladi — yuklab olish tugmasi yo'q, doimiy havola ham yo'q. Har safar 3 soatlik imzolangan havola beriladi."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "AI qaysi tilda tekshiradi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Barcha izohlar, xatolar tahlili va tavsiyalar o'zbek tilida yoziladi."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ota-ona hamma narsani ko'radimi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Faqat bola ruxsat bergan bo'limlarni. Kamera, dars yozuvi va faollik tahlili — har biri alohida yoqiladi, bola istalgan payt bog'lanishni uzishi mumkin."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qaysi fanlar uchun mos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Har qanday fan uchun. Doskadagi matematik formula rejimi esa matematika kurslarida yoqiladi."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Mobil ilova bormi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Platforma brauzerda — telefonda ham, kompyuterda ham — to'liq ishlaydi. Nativ ilova ishlab chiqilmoqda."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Internet sekin bo'lsa-chi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Doska real vaqtda ishlaydi, aloqa uzilsa avtomatik \"sekin rejim\"ga o'tadi va tiklanganda sinxronlanadi."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Nechta o'quvchi qatnasha oladi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Guruh hajmi cheklanmagan — kichik repetitor guruhidan to'liq sinfgacha."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ro'yxatdan o'tish qancha vaqt oladi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bir daqiqa. O'qituvchi hisoblari qo'shimcha ravishda administrator tasdig'idan o'tadi."
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <div style="max-width: 42rem; margin: 4rem auto; padding: 0 1.5rem; font-family: system-ui, sans-serif; line-height: 1.6;">
+        <h1>YolUp — onlayn ta'lim platformasi</h1>
+        <p>
+          Jonli video darslar, real vaqtdagi interaktiv doska, AI uy vazifasi tekshiruvi
+          (o'zbek tilida), avtomatik davomat va ota-ona nazorati — bitta platformada.
+        </p>
+        <p>Sahifani ko'rish uchun brauzeringizda JavaScript'ni yoqing.</p>
+        <p><a href="/register">Bepul boshlash</a> · <a href="/login">Kirish</a></p>
+      </div>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
