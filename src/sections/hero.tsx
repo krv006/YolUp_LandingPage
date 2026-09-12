@@ -1,10 +1,10 @@
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowDown, ArrowRight } from "lucide-react";
 import { LiveLessonMockup } from "@/components/mockups/live-lesson-mockup";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Reveal } from "@/components/ui/reveal";
-import { APP_URLS, HERO } from "@/content/site";
+import { HERO, IS_LIVE, LAUNCH, PRIMARY_CTA } from "@/content/site";
 
 export function Hero() {
   return (
@@ -22,7 +22,13 @@ export function Hero() {
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-14">
           <div>
-            <Reveal>
+            <Reveal className="flex flex-wrap items-center gap-3">
+              {IS_LIVE ? null : (
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-blue/25 bg-blue/10 px-2.5 py-1 text-[0.75rem] font-semibold text-blue">
+                  <span className="h-1.5 w-1.5 rounded-full bg-mint" />
+                  {LAUNCH.badge}
+                </span>
+              )}
               <Eyebrow>{HERO.eyebrow}</Eyebrow>
             </Reveal>
 
@@ -40,13 +46,13 @@ export function Hero() {
 
             <Reveal delay={0.18}>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button href={APP_URLS.register} size="lg">
-                  {HERO.primaryCta}
+                <Button href={PRIMARY_CTA.href} size="lg">
+                  {PRIMARY_CTA.label}
                   <ArrowRight size={17} aria-hidden />
                 </Button>
                 <Button href="#imkoniyatlar" variant="secondary" size="lg">
-                  <Play size={15} aria-hidden />
                   {HERO.secondaryCta}
+                  <ArrowDown size={15} aria-hidden />
                 </Button>
               </div>
             </Reveal>

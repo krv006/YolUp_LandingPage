@@ -4,7 +4,7 @@ import { Container } from "@/components/ui/container";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Reveal } from "@/components/ui/reveal";
-import { APP_URLS, PRICING } from "@/content/site";
+import { LAUNCH, PRICING, PRIMARY_CTA } from "@/content/site";
 
 /**
  * To'lov moduli hali qurilmagan (brief §9) — shuning uchun narx rejalari,
@@ -20,6 +20,9 @@ export function Pricing() {
           </Reveal>
           <Reveal delay={0.06}>
             <h2 className="text-h2">Beta davrida to'liq bepul</h2>
+          </Reveal>
+          <Reveal delay={0.12}>
+            <p className="text-lead text-fg">{LAUNCH.note}</p>
           </Reveal>
         </SectionHeading>
 
@@ -50,8 +53,8 @@ export function Pricing() {
               ))}
             </ul>
 
-            <Button href={APP_URLS.register} size="lg" className="mt-8 w-full">
-              {PRICING.cta}
+            <Button href={PRIMARY_CTA.href} size="lg" className="mt-8 w-full">
+              {PRIMARY_CTA.label}
               <ArrowRight size={17} aria-hidden />
             </Button>
 

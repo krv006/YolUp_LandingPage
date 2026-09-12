@@ -52,6 +52,24 @@ src/
    qilinadi.
 6. **Har mockup bitta joyda** ishlatiladi — takrorlanmaydi.
 
+## Ishga tushirish holati (muhim)
+
+Platforma hali prodga chiqmagan — landing **SEO uchun oldindan** joylandi.
+Shuning uchun sahifada "ro'yxatdan o'tish" emas, **"xabardor bo'lish"**
+(Telegram) harakati taklif qilinadi va navbardagi "Kirish" yashirilgan.
+
+Buni bitta joy boshqaradi — `content/site.ts`:
+
+```ts
+export const IS_LIVE: boolean = false;   // ← ochilganda `true`
+```
+
+`true` qilinganda avtomatik almashadi: navbar "Kirish" tugmasi qaytadi, barcha
+CTA'lar `/register` ga o'tadi, yakuniy blok matni o'zgaradi. Qo'lda tahrirlash
+talab qiladigan **yagona** joy — `index.html` dagi FAQPage JSON-LD'ning
+birinchi savoli ("Platforma qachon ishga tushadi?") va `og:description`
+oxiridagi "Tez orada ishga tushadi" jumlasi.
+
 ## Ilovaga havolalar
 
 `content/site.ts` → `APP_URLS`. Hozir `/login` va `/register` — landing va ilova

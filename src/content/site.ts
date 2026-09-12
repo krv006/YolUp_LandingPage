@@ -21,6 +21,17 @@ import {
 export type Accent = "violet" | "blue" | "mint" | "orange" | "sky" | "green";
 
 /**
+ * Platforma hali ishlab chiqarishga chiqarilmagan — landing SEO uchun
+ * oldindan joylandi. Shu sabab sahifada "ro'yxatdan o'tish" emas,
+ * "xabardor bo'lish" harakati taklif qilinadi.
+ *
+ * ISHGA TUSHGANDA: shu qiymatni `true` qiling — navbardagi "Kirish",
+ * barcha CTA havolalari va matnlar avtomatik almashadi. Boshqa hech qayerda
+ * o'zgartirish kerak emas.
+ */
+export const IS_LIVE: boolean = false;
+
+/**
  * Ilova marshrutlari. Landing va ilova bitta domenda deb faraz qilinadi.
  * Ilova alohida subdomenga chiqsa (masalan `app.yolup.uz`) — faqat shu yerni
  * o'zgartirish kifoya.
@@ -33,6 +44,20 @@ export const APP_URLS = {
 export const CONTACT = {
   email: "salom@yolup.uz",
   telegram: "https://t.me/yolup_uz",
+} as const;
+
+/**
+ * Asosiy harakat. Ishga tushmagunicha u Telegram kanaliga olib boradi —
+ * ishlamaydigan `/register` sahifasiga yuborish foydalanuvchini aldash
+ * bo'lardi.
+ */
+export const PRIMARY_CTA = IS_LIVE
+  ? { label: "Bepul boshlash", href: APP_URLS.register }
+  : { label: "Xabardor bo'lish", href: CONTACT.telegram };
+
+export const LAUNCH = {
+  badge: "Tez orada",
+  note: "Platforma yakuniy sinovdan o'tmoqda — ishga tushgan kuni Telegram kanalimizda birinchi bo'lib e'lon qilamiz.",
 } as const;
 
 export const NAV_LINKS = [
@@ -49,8 +74,7 @@ export const HERO = {
   titleAccent: "Uzoqqa bor.",
   subtitle:
     "Jonli darslar, interaktiv doska, AI uy vazifasi tekshiruvi va ota-ona nazorati — bitta platformada. O'zbek tilida.",
-  primaryCta: "Bepul boshlash",
-  secondaryCta: "Demoni ko'rish",
+  secondaryCta: "Imkoniyatlar bilan tanishing",
   trustLine: ["5 ta rol", "3 til", "Dars yozuvlari himoyalangan"],
 } as const;
 
@@ -281,18 +305,17 @@ export const METRICS: readonly { value: number; suffix: string; label: string }[
 
 export const PRICING = {
   eyebrow: "NARXLAR",
-  badge: "Beta",
-  title: "Hozircha bepul",
+  badge: "Tez orada",
+  title: "Ochilish beta'si — bepul",
   description:
-    "Platforma beta bosqichida — barcha imkoniyatlar cheklovsiz ochiq. Karta talab qilinmaydi.",
+    "Platforma ishga tushganda beta davri bepul bo'ladi: barcha imkoniyatlar cheklovsiz ochiq, karta talab qilinmaydi.",
   includes: [
     "Cheklanmagan jonli darslar va guruhlar",
     "Interaktiv doska va dars yozuvlari",
     "AI uy vazifasi tekshiruvi",
     "Ota-ona kabineti va hisobotlar",
   ],
-  note: "Narxlar tez orada e'lon qilinadi.",
-  cta: "Bepul boshlash",
+  note: "Doimiy narxlar keyinroq e'lon qilinadi.",
 } as const;
 
 /**
@@ -300,6 +323,11 @@ export const PRICING = {
  * bu yerni o'zgartirsangiz, u yerni ham yangilang.
  */
 export const FAQ_ITEMS: readonly { question: string; answer: string }[] = [
+  {
+    question: "Platforma qachon ishga tushadi?",
+    answer:
+      "Platforma yakuniy sinovdan o'tmoqda. Aniq sana e'lon qilinganda Telegram kanalimizda birinchi bo'lib bildiramiz — hozircha ro'yxatdan o'tish ochiq emas.",
+  },
   {
     question: "Dars yozuvini yuklab olsa bo'ladimi?",
     answer:
@@ -336,14 +364,17 @@ export const FAQ_ITEMS: readonly { question: string; answer: string }[] = [
   {
     question: "Ro'yxatdan o'tish qancha vaqt oladi?",
     answer:
-      "Bir daqiqa. O'qituvchi hisoblari qo'shimcha ravishda administrator tasdig'idan o'tadi.",
+      "Ochilgandan keyin bir daqiqa. O'qituvchi hisoblari qo'shimcha ravishda administrator tasdig'idan o'tadi.",
   },
 ];
 
 export const FINAL_CTA = {
-  title: "Birinchi darsingizni bugun o'tkazing.",
-  subtitle: "Hisob yaratish bepul. Karta talab qilinmaydi.",
-  primary: "Bepul boshlash",
+  title: IS_LIVE
+    ? "Birinchi darsingizni bugun o'tkazing."
+    : "Ochilishdan birinchi bo'lib xabardor bo'ling.",
+  subtitle: IS_LIVE
+    ? "Hisob yaratish bepul. Karta talab qilinmaydi."
+    : "Telegram kanalimizga qo'shiling — ishga tushgan kuni xabar beramiz.",
   secondary: "Savolim bor",
 } as const;
 

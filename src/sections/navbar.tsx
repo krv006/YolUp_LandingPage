@@ -4,7 +4,7 @@ import { YolUpLogo } from "@/components/brand/yolup-logo";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { APP_URLS, NAV_LINKS } from "@/content/site";
+import { APP_URLS, IS_LIVE, NAV_LINKS, PRIMARY_CTA } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -60,14 +60,18 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <a
-            href={APP_URLS.login}
-            className="hidden h-10 items-center rounded-btn px-4 text-[0.9375rem] font-semibold text-ink transition-colors duration-200 hover:text-blue sm:inline-flex"
-          >
-            Kirish
-          </a>
-          <Button href={APP_URLS.register} className="hidden sm:inline-flex">
-            Bepul boshlash
+          {/* Ilova ochilmaguncha "Kirish" ko'rsatilmaydi — u ishlamaydigan
+              sahifaga olib borardi. */}
+          {IS_LIVE ? (
+            <a
+              href={APP_URLS.login}
+              className="hidden h-10 items-center rounded-btn px-4 text-[0.9375rem] font-semibold text-ink transition-colors duration-200 hover:text-blue sm:inline-flex"
+            >
+              Kirish
+            </a>
+          ) : null}
+          <Button href={PRIMARY_CTA.href} className="hidden sm:inline-flex">
+            {PRIMARY_CTA.label}
           </Button>
 
           <button
@@ -100,12 +104,14 @@ export function Navbar() {
               </a>
             ))}
             <div className="mt-2 flex flex-col gap-2">
-              <Button href={APP_URLS.register} size="lg">
-                Bepul boshlash
+              <Button href={PRIMARY_CTA.href} size="lg">
+                {PRIMARY_CTA.label}
               </Button>
-              <Button href={APP_URLS.login} variant="secondary" size="lg">
-                Kirish
-              </Button>
+              {IS_LIVE ? (
+                <Button href={APP_URLS.login} variant="secondary" size="lg">
+                  Kirish
+                </Button>
+              ) : null}
             </div>
           </Container>
         </div>
