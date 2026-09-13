@@ -65,8 +65,8 @@
       })();
     </script>
 
-    <!-- Structured data. FAQ savollari `src/content/site.ts` dagi FAQ_ITEMS bilan
-         bir xil bo'lishi kerak — o'zgartirilsa ikkalasi ham yangilanadi. -->
+    <!-- Structured data. Pastdagi FAQPage savollari `src/content/site.ts` dagi
+         FAQ_ITEMS bilan bir xil bo'lishi kerak — biri o'zgarsa, ikkinchisi ham. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -80,6 +80,12 @@
         "inLanguage": ["uz", "ru", "en"]
       }
     </script>
+    <!-- FAQPage JSON-LD VAQTINCHA YOPILDI.
+         Sahifa hozir faqat "Tez orada" ekranini ko'rsatadi (src/content/site.ts
+         dagi SHOW_LANDING = false). Google FAQ strukturaviy ma'lumoti sahifada
+         KO'RINADIGAN kontentga mos bo'lishini talab qiladi — ko'rinmaydigan FAQ
+         uchun qo'lda jazo (manual action) berilishi mumkin.
+         SHOW_LANDING = true qilganingizda quyidagi izohni oching.
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -160,19 +166,16 @@
         ]
       }
     </script>
+    -->
   </head>
   <body>
     <div id="root"></div>
     <noscript>
       <div style="max-width: 42rem; margin: 4rem auto; padding: 0 1.5rem; font-family: system-ui, sans-serif; line-height: 1.6;">
-        <h1>YolUp — onlayn ta'lim platformasi</h1>
-        <p>
-          Jonli video darslar, real vaqtdagi interaktiv doska, AI uy vazifasi tekshiruvi
-          (o'zbek tilida), avtomatik davomat va ota-ona nazorati — bitta platformada.
-        </p>
-        <p>Platforma tez orada ishga tushadi.</p>
-        <p>Sahifani ko'rish uchun brauzeringizda JavaScript'ni yoqing.</p>
-        <p><a href="https://t.me/yolup_uz">Telegram kanalimiz</a> · <a href="mailto:salom@yolup.uz">salom@yolup.uz</a></p>
+        <!-- Mazmuni ekranda ko'rinadigan narsa bilan bir xil bo'lishi kerak.
+             SHOW_LANDING yoqilganda bu yerga sahifaning qisqa tavsifi qaytariladi. -->
+        <h1>YolUp — tez orada</h1>
+        <p>O'zbekiston uchun onlayn ta'lim platformasi ustida ishlayapmiz.</p>
       </div>
     </noscript>
     <script type="module" src="/src/main.tsx"></script>

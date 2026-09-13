@@ -52,6 +52,30 @@ src/
    qilinadi.
 6. **Har mockup bitta joyda** ishlatiladi — takrorlanmaydi.
 
+## Landing hozircha YOPIQ (muhim)
+
+Tashrifchi hozir faqat **"Tez orada"** ekranini ko'radi
+([src/pages/coming-soon.tsx](src/pages/coming-soon.tsx)). Landingning butun
+kodi joyida — hech narsa o'chirilmagan, shunchaki ko'rsatilmaydi:
+
+```ts
+export const SHOW_LANDING: boolean = false;   // ← tayyor bo'lganda `true`
+```
+
+`true` qilinganda 13 ta seksiya o'z-o'zidan qaytadi. Yoqishdan oldin yana
+ikki narsani tiklang:
+
+1. `index.html` dagi **FAQPage JSON-LD** — vaqtincha izohga olingan. Google
+   FAQ strukturaviy ma'lumoti sahifada **ko'rinadigan** kontentga mos
+   bo'lishini talab qiladi; "Tez orada" ekranida ko'rinmagan FAQ uchun qo'lda
+   jazo berilishi mumkin.
+2. `index.html` dagi **`<noscript>`** matni — u ham ekranda ko'rinadigan
+   narsaga mos bo'lishi kerak.
+
+Yopiq holatda landing matnlari **build'ga umuman tushmaydi** (Rollup
+ishlatilmagan kodni chiqarib tashlaydi), ya'ni e'lon qilinmagan kontentni
+JS fayldan o'qib bo'lmaydi.
+
 ## Ishga tushirish holati (muhim)
 
 Platforma hali prodga chiqmagan — landing **SEO uchun oldindan** joylandi.

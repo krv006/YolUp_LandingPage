@@ -32,6 +32,24 @@ export type Accent = "violet" | "blue" | "mint" | "orange" | "sky" | "green";
 export const IS_LIVE: boolean = false;
 
 /**
+ * Landing sahifasining O'ZI ko'rsatiladimi.
+ *
+ * Hozircha `false` — tashrifchi faqat "Tez orada" ekranini ko'radi.
+ * Landingning butun kodi joyida turadi va HECH NARSA o'chirilmagan; tayyor
+ * bo'lganda shu qiymatni `true` qilish kifoya.
+ *
+ * Diqqat: yoqqanda `index.html` dagi FAQPage JSON-LD ni ham qayta oching —
+ * u vaqtincha izohga olingan (sababi o'sha yerda yozilgan).
+ */
+export const SHOW_LANDING: boolean = false;
+
+/** "Tez orada" ekranidagi matn. */
+export const COMING_SOON = {
+  title: "Tez orada",
+  subtitle: "O'zbekiston uchun onlayn ta'lim platformasi ustida ishlayapmiz.",
+} as const;
+
+/**
  * Ilova marshrutlari. Landing va ilova bitta domenda deb faraz qilinadi.
  * Ilova alohida subdomenga chiqsa (masalan `app.yolup.uz`) — faqat shu yerni
  * o'zgartirish kifoya.

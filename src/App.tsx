@@ -1,5 +1,7 @@
 import { domAnimation, LazyMotion } from "framer-motion";
+import { SHOW_LANDING } from "@/content/site";
 import { useHashScroll } from "@/hooks/use-hash-scroll";
+import { ComingSoon } from "@/pages/coming-soon";
 import { Navbar } from "@/sections/navbar";
 import { Hero } from "@/sections/hero";
 import { TrustStrip } from "@/sections/trust-strip";
@@ -24,6 +26,10 @@ import { Footer } from "@/sections/footer";
  */
 export default function App() {
   useHashScroll();
+
+  // Landing hali ochilmagan — pastdagi butun sahifa tayyor turibdi, lekin
+  // ko'rsatilmaydi (`SHOW_LANDING`). Hech narsa o'chirilmagan.
+  if (!SHOW_LANDING) return <ComingSoon />;
 
   return (
     // `strict` — kod bazasida og'ir `motion` komponenti ishlatilib qolsa,
