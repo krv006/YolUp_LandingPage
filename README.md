@@ -74,7 +74,7 @@ o'sha manbadan qurilgani uchun avtomatik mos qoladi.
 ```
 src/
   app/
-    layout.tsx        shriftlar (next/font) + meta ma'lumot
+    layout.tsx        shriftlar + meta ma'lumot
     page.tsx          faqat kompozitsiya + JSON-LD
     globals.css       dizayn CSS'i, AYNAN ko'chirilgan, `.yl` ostida
   content/            site.ts (sozlamalar), faq.ts (savollar)
@@ -98,10 +98,31 @@ qoidalar `.yl` ostida, shuning uchun boshqa sahifalarga sizmaydi.
 Ikkita ataylab kiritilgan farq fayl boshida izohlangan:
 
 1. `--fd` / `--ft` endi `next/font` o'zgaruvchilariga ishora qiladi
-   (shriftlar o'z hostimizdan beriladi).
+   (pastdagi "Shriftlar" bo'limiga qarang).
 2. `html` ga fon rangi qo'shildi — referens iframe ichida qat'iy balandlikda
    ko'rsatilgani uchun sahifa chetidan cho'zilganda oq fon chiqib qolishi
    sezilmagan.
+
+## Shriftlar
+
+**Wix Madefor Display** (600/700) va **Wix Madefor Text** (400/500/600).
+`.woff2` fayllar `src/fonts/` da yotadi va `next/font/local` orqali
+beriladi — build paytida ham, ishlash paytida ham Google'ga hech qanday
+so'rov ketmaydi.
+
+Fayllar tasdiqlangan dizayn bundle'idan ajratib olingan, ya'ni Google
+aynan shu baytlarni bergan. Shu sababli sahifa referens maket bilan
+shrift darajasida bir xil chiqadi.
+
+> `next/font/google` ATAYLAB ishlatilmaydi: u shriftlarni build paytida
+> yuklab oladi va Vercel'da bu so'rov vaqti-vaqti bilan uzilib, build'ni
+> yiqitadi (Turbopack buni chalg'ituvchi `Module not found:
+> @vercel/turbopack-next/internal/font/google/font` xatosi deb
+> ko'rsatadi). Lokal fayllar bu muammoni butunlay yo'q qiladi.
+
+Faqat **lotin** to'plami saqlangan — o'zbekcha matn uchun yetarli
+(apostroflar `ʻ` va `ʼ` shu diapazonda). `√`, `₁`, `✓` kabi belgilar tizim
+shriftidan olinadi; referensda ham shunday edi.
 
 ## Ma'lumotlar haqiqiyligi
 

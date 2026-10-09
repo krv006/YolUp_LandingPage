@@ -1,26 +1,54 @@
 /**
  * Ildiz layout: shriftlar va meta ma'lumot.
  *
- * Shriftlar `next/font/google` orqali o'z hostimizdan beriladi — dizayndagi
- * `@font-face` ro'yxati bilan bir xil oila va qalinliklar (Display 600/700,
- * Text 400/500/600). CSS ularni `--fd` / `--ft` orqali oladi.
+ * Shriftlar repo'da yotadi va `next/font/local` orqali beriladi — build
+ * paytida internetdan hech narsa yuklab olinmaydi.
+ *
+ * NEGA `next/font/google` EMAS: u shrift fayllarini build paytida Google'dan
+ * tortadi. Vercel'da bu so'rov vaqti-vaqti bilan uzilib, build'ni yiqitadi
+ * (Turbopack buni chalg'ituvchi "Module not found:
+ * @vercel/turbopack-next/internal/font/google/font" xatosi sifatida
+ * ko'rsatadi). Fayllarni o'zimiz saqlasak, build takrorlanuvchan bo'ladi.
+ *
+ * `src/fonts/` dagi `.woff2` fayllar tasdiqlangan dizayn bundle'idan
+ * ajratib olingan — ya'ni Google aynan shu baytlarni bergan. Quyidagi
+ * e'lonlar ham dizayndagi `@font-face` to'plamini takrorlaydi: Display
+ * 600 va 700 bitta faylni ko'rsatadi (Google ikkalasiga ham shuni beradi),
+ * Text esa har bir qalinlik uchun alohida fayl oladi.
  */
 import type { Metadata } from "next";
-import { Wix_Madefor_Display, Wix_Madefor_Text } from "next/font/google";
+import localFont from "next/font/local";
 
 import { SITE } from "@/content/site";
 import "./globals.css";
 
-const display = Wix_Madefor_Display({
-  subsets: ["latin", "latin-ext"],
-  weight: ["600", "700"],
+/*
+ * `unicode-range` ATAYLAB berilmagan. Dizaynda u bor edi, chunki u yerda
+ * har bir to'plam (lotin, kirill, …) alohida fayl edi va brauzerga qaysi
+ * birini olishni aytish kerak edi. Bizda faqat lotin fayli bor, qolgan
+ * to'plamlar umuman yuklanmaydi — diapazondan tashqaridagi belgilar
+ * (masalan √, ₁, ✓) brauzer tomonidan tizim shriftidan olinadi. Natija
+ * referensdagi bilan bir xil.
+ *
+ * (`declarations` parametri orqali qo'shib ko'rildi — Turbopack uni
+ * to'g'ri seriyalay olmadi va build yiqildi.)
+ */
+
+const wixMadeforDisplay = localFont({
+  src: [
+    { path: "../fonts/WixMadeforDisplay-latin.woff2", weight: "600", style: "normal" },
+    { path: "../fonts/WixMadeforDisplay-latin.woff2", weight: "700", style: "normal" },
+  ],
   variable: "--font-yl-display",
   display: "swap",
 });
 
-const text = Wix_Madefor_Text({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600"],
+const wixMadeforText = localFont({
+  src: [
+    { path: "../fonts/WixMadeforText-400-latin.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/WixMadeforText-500-latin.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/WixMadeforText-600-latin.woff2", weight: "600", style: "normal" },
+  ],
   variable: "--font-yl-text",
   display: "swap",
 });
@@ -49,7 +77,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="uz" className={`${display.variable} ${text.variable}`}>
+    <html lang="uz" className={`${wixMadeforDisplay.variable} ${wixMadeforText.variable}`}>
       <body>{children}</body>
     </html>
   );
