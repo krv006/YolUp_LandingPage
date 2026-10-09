@@ -14,7 +14,7 @@ import { MenuProvider } from "@/components/menu-context";
 import { SiteHeader } from "@/components/site-header";
 import { StickyCta } from "@/components/sticky-cta";
 import { FAQ_ITEMS } from "@/content/faq";
-import { ACCENT_VARS, SITE } from "@/content/site";
+import { ACCENT_VARS, SHOW_ENGAGEMENT, SITE } from "@/content/site";
 import { Audiences } from "@/sections/audiences";
 import { Engagement } from "@/sections/engagement";
 import { Faq } from "@/sections/faq";
@@ -72,7 +72,8 @@ export default function Home() {
           <Problem />
           <HowItWorks />
           <Features />
-          <Engagement />
+          {/* Vaqtincha yopilgan — `SHOW_ENGAGEMENT`. Bo'lim kodi joyida turibdi. */}
+          {SHOW_ENGAGEMENT ? <Engagement /> : null}
           <Audiences />
           <Privacy />
           <Teachers />

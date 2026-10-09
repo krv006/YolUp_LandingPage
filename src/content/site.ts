@@ -19,6 +19,19 @@
 export const IS_LIVE = false;
 
 /**
+ * "Ishtirok" bo'limi ko'rsatiladimi.
+ *
+ * Hozircha `false` — bo'lim sahifada chiqmaydi. Kodi joyida turibdi
+ * (`src/sections/engagement.tsx` va undagi maket
+ * `src/components/mocks/panels.tsx` → `EngagementPanel`), HECH NARSA
+ * o'chirilmagan: shu qiymatni `true` qilish kifoya.
+ *
+ * Bayroq futerdagi "Ishtirok va diqqat" havolasini ham boshqaradi —
+ * aks holda u mavjud bo'lmagan `#ishtirok` ga olib borardi.
+ */
+export const SHOW_ENGAGEMENT = false;
+
+/**
  * Dizaynning ikki rasmiy aksenti. Standart — "Brend ko'k".
  * Qiymatlar dizayndagi `renderVals()` dan aynan olingan.
  */

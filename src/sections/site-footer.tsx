@@ -8,7 +8,7 @@ import { cacheLife } from "next/cache";
 
 import { Mark, Wordmark } from "@/components/brand";
 import { ArrowUp, ExternalLink } from "@/components/icons";
-import { IS_LIVE, URLS } from "@/content/site";
+import { IS_LIVE, SHOW_ENGAGEMENT, URLS } from "@/content/site";
 
 /**
  * Joriy yil.
@@ -28,7 +28,8 @@ async function CopyrightYear() {
 const PLATFORM_LINKS = [
   { href: "#qanday-ishlaydi", label: "Qanday ishlaydi" },
   { href: "#imkoniyatlar", label: "Imkoniyatlar" },
-  { href: "#ishtirok", label: "Ishtirok va diqqat" },
+  // "Ishtirok" bo'limi yopiq bo'lsa, bu havola hech qayerga olib bormaydi.
+  ...(SHOW_ENGAGEMENT ? [{ href: "#ishtirok", label: "Ishtirok va diqqat" }] : []),
 ];
 
 const AUDIENCE_LINKS = [
