@@ -33,6 +33,12 @@ optimallashtiradi va futerdagi yil kuniga bir marta yangilanadi.
 2. Muhit o'zgaruvchilarini qo'shing (`.env.example` dagi ro'yxat).
 3. `yolup.uz` domenini ulang.
 
+Build sozlamalari `vercel.json` da qotirilgan (framework, build va install
+buyruqlari). U paneldagi sozlamalardan ustun turadi — shuning uchun loyiha
+avval boshqa framework uchun sozlangan bo'lsa ham to'g'ri yig'iladi.
+Xususan `outputDirectory` ataylab `null`: Next.js natijani `.next` ga
+chiqaradi, `dist` ga emas.
+
 **O'z serveringizda** (nginx + Node):
 
 ```bash
