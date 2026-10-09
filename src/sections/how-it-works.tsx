@@ -1,83 +1,61 @@
-import { useId, useState } from "react";
-import { Container } from "@/components/ui/container";
-import { Section, SectionHeading } from "@/components/ui/section";
-import { Eyebrow } from "@/components/ui/eyebrow";
-import { Reveal } from "@/components/ui/reveal";
-import { TabPanel, Tabs } from "@/components/ui/tabs";
-import { FLOWS } from "@/content/site";
-
 /**
- * Qadamlar chapdan o'ngga KO'TARILIB boradi — logotipdagi yuqoriga
- * yo'nalgan strelka motivi. Mobil'da bu vertikal ro'yxatga aylanadi.
+ * B — Qanday ishlaydi.
+ *
+ * To'rt qadam. Mobil'da vertikal vaqt chizig'i, 1024 px dan boshlab
+ * gorizontal qator — ikkalasi ham `.jr` CSS'ida.
  */
-const RISE = ["lg:mt-16", "lg:mt-11", "lg:mt-5", "lg:mt-0"];
+import { JourneyBoard, JourneyHomework, JourneyLive, JourneyResult } from "@/components/mocks/journey";
+
+const STEPS = [
+  {
+    title: "Jonli dars",
+    text: "Oʻqituvchi va oʻquvchilar jonli darsda uchrashadi. Ekran ovoz bilan ulashiladi, dars yozib boriladi.",
+    mock: <JourneyLive />,
+  },
+  {
+    title: "Birgalikda ishlash",
+    text: "Masala interaktiv doskada birga yechiladi, savollar kursning guruh chatida davom etadi.",
+    mock: <JourneyBoard />,
+  },
+  {
+    title: "Vazifa va tekshiruv",
+    text: "Oʻquvchi uy vazifasini topshiradi va test yechadi. Qoʻllab-quvvatlanadigan fayllarga AI oʻzbek tilida izoh beradi.",
+    mock: <JourneyHomework />,
+  },
+  {
+    title: "Natija va kuzatuv",
+    text: "Oʻqituvchi ishtirok va natijalarni koʻradi. Ota-ona esa oʻz panelida mavjud maʼlumotlarni koʻradi.",
+    mock: <JourneyResult />,
+  },
+];
 
 export function HowItWorks() {
-  const baseId = useId();
-  const [active, setActive] = useState(FLOWS[0]?.id ?? "teacher");
-  const current = FLOWS.find((flow) => flow.id === active) ?? FLOWS[0];
-
-  if (!current) return null;
-
-  const steps = current.steps;
-  const offset = RISE.length - steps.length;
-
   return (
-    <Section id="qanday-ishlaydi" tone="subtle">
-      <Container>
-        <SectionHeading>
-          <Reveal>
-            <Eyebrow>QANDAY ISHLAYDI</Eyebrow>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <h2 className="text-h2">Uch-to'rt qadamda ishga tushasiz</h2>
-          </Reveal>
-          <Reveal delay={0.12}>
-            <p className="text-lead text-fg">
-              O'rnatish yo'q, sozlash yo'q — brauzerdan ochasiz va boshlaysiz.
-            </p>
-          </Reveal>
-        </SectionHeading>
+    <section id="qanday-ishlaydi" className="sec bw" aria-labelledby="qi-title">
+      <div className="wrap">
+        <div className="head">
+          <p className="eyebrow">Qanday ishlaydi</p>
+          <h2 id="qi-title" className="h2">
+            Bir dars. Bir nechta imkoniyat. Bitta tizim.
+          </h2>
+          <p className="lead">8-B sinfning bitta algebra darsi misolida — jonli darsdan natijagacha.</p>
+        </div>
 
-        <Reveal delay={0.16} className="mt-10 flex justify-center">
-          <Tabs
-            baseId={baseId}
-            items={FLOWS.map(({ id, label }) => ({ id, label }))}
-            value={active}
-            onChange={setActive}
-            label="Rol bo'yicha qadamlar"
-          />
-        </Reveal>
-
-        {/* Qadamlar chapdan o'ngga ko'tarilib boradi — bezak chiziq qo'shilmadi:
-            kartalarning o'zi harakat yo'nalishini yetarli darajada ko'rsatadi. */}
-        <TabPanel baseId={baseId} tab={current.id} className="mt-14">
-          <ol
-            className={
-              steps.length === 4
-                ? "grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
-                : "grid gap-5 sm:grid-cols-3"
-            }
-          >
-            {steps.map((step, index) => (
-              <Reveal
-                as="li"
-                key={step.title}
-                delay={index * 0.06}
-                className={`relative rounded-card border border-line bg-surface p-6 shadow-soft ${
-                  RISE[offset + index] ?? "lg:mt-0"
-                }`}
-              >
-                <span className="font-display text-[0.8125rem] font-extrabold tracking-[0.1em] text-brand">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-3 text-[1.0625rem] font-bold text-ink">{step.title}</h3>
-                <p className="mt-2 text-[0.875rem] leading-relaxed text-fg">{step.description}</p>
-              </Reveal>
-            ))}
-          </ol>
-        </TabPanel>
-      </Container>
-    </Section>
+        <ol className="jr">
+          {STEPS.map((step, i) => (
+            <li key={step.title}>
+              <span className="num">{i + 1}</span>
+              <div className="jb">
+                <div className="jt">
+                  <h3 className="h3">{step.title}</h3>
+                  <p className="p">{step.text}</p>
+                </div>
+                {step.mock}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
   );
 }

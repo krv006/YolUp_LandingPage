@@ -1,41 +1,43 @@
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Container } from "@/components/ui/container";
-import { Reveal } from "@/components/ui/reveal";
-import { CONTACT, FINAL_CTA, PRIMARY_CTA } from "@/content/site";
+/**
+ * I — Yakuniy CTA.
+ *
+ * `.dk` klassi fokus halqasini yorug' rangga o'tkazadi (quyuq fon ustida).
+ * `#final-cta` ni yopishqoq panel kuzatadi.
+ */
+import { LoginLink, PrimaryCta } from "@/components/cta";
+import { Mark } from "@/components/brand";
+import { IS_LIVE } from "@/content/site";
 
 export function FinalCta() {
   return (
-    <section className="bg-bg py-20 sm:py-24">
-      <Container>
-        <Reveal className="relative overflow-hidden rounded-block bg-brand px-6 py-16 text-center sm:px-12 sm:py-20">
-          {/* Nozik nur — tekis gradient ustidagi yagona bezak */}
-          <span
-            aria-hidden
-            className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[540px] max-w-[120vw] -translate-x-1/2 rounded-full bg-white/20 blur-3xl"
-          />
+    <section id="xabardor-boling" className="sec fin dk" aria-labelledby="fin-title">
+      <div className="wrap fin-in">
+        <div style={{ display: "flex", flexDirection: "column", gap: 20, alignItems: "flex-start" }}>
+          {!IS_LIVE ? (
+            <span className="badge">
+              <span className="d" />
+              Tez orada
+            </span>
+          ) : null}
 
-          <div className="relative">
-            <h2 className="text-h2 text-white">{FINAL_CTA.title}</h2>
-            <p className="mx-auto mt-4 max-w-md text-lead text-white/85">{FINAL_CTA.subtitle}</p>
+          <h2 id="fin-title" className="h2">
+            Keyingi darsingizni yangi bosqichga olib chiqing.
+          </h2>
 
-            <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-              <Button
-                href={PRIMARY_CTA.href}
-                size="lg"
-                variant="secondary"
-                className="border-transparent bg-white text-ink hover:shadow-[0_16px_40px_rgb(0_0_0/0.18)]"
-              >
-                {PRIMARY_CTA.label}
-                <ArrowRight size={17} aria-hidden />
-              </Button>
-              <Button href={`mailto:${CONTACT.email}`} size="lg" variant="onDark">
-                {FINAL_CTA.secondary}
-              </Button>
-            </div>
+          {IS_LIVE ? (
+            <p className="p">Roʻyxatdan oʻting va darslaringizni YolUpʼda boshlang.</p>
+          ) : (
+            <p className="p">YolUp hali ishga tushmagan. Ishga tushishi haqida birinchilardan boʻlib xabar oling.</p>
+          )}
+
+          <div id="final-cta" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 16 }}>
+            <PrimaryCta className="cta cta-inv" />
+            <LoginLink className="ghost" style={{ color: "#FFFFFF", textDecorationColor: "rgba(255,255,255,0.5)" }} />
           </div>
-        </Reveal>
-      </Container>
+        </div>
+
+        <Mark className="fin-mark" />
+      </div>
     </section>
   );
 }
